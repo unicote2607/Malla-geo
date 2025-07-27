@@ -1,1 +1,192 @@
+/* --- Variables de Color y Estilos Globales --- */
+:root {
+    --color-fondo: #fdf2f8; /* Rosa muy claro */
+    --color-texto: #333;
+    --color-primario: #e75480; /* Rosa principal */
+    --color-secundario: #800020; /* Burdeo */
+    --color-aprobado: #7a5c58; /* Tono tierra/burdeo suave */
+    --color-aprobado-texto: #fdf2f8;
+    --color-borde: #f4afc6;
+    --sombra-caja: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Encabezado y Título --- */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: var(--color-secundario);
+    font-weight: 700;
+}
+
+header p {
+    font-weight: 300;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+#resetButton {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#resetButton:hover {
+    background-color: var(--color-secundario);
+}
+
+/* --- Contenedor Principal de la Malla --- */
+#malla-curricular-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: var(--sombra-caja);
+}
+
+/* --- Columnas de Semestres --- */
+.semestre-columna {
+    flex: 0 0 180px; /* Evita que las columnas se encojan y define un ancho base */
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--color-fondo);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #fce7f3;
+}
+
+.semestre-titulo {
+    color: var(--color-secundario);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-primario);
+    padding-bottom: 8px;
+}
+
+/* --- Estilos de los Ramos --- */
+.ramo {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ramo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(231, 84, 128, 0.2);
+}
+
+/* --- Estados de los Ramos --- */
+.ramo.aprobado {
+    background-color: var(--color-aprobado);
+    color: var(--color-aprobado-texto);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    border-color: var(--color-aprobado);
+}
+
+.ramo.bloqueado {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+}
+
+.ramo.bloqueado:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- Notificación Emergente --- */
+#notificacion {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-top: 5px solid var(--color-secundario);
+}
+
+#notificacion.hidden {
+    display: none;
+}
+
+#notificacion-texto {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#notificacion-cerrar {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+#notificacion-cerrar:hover {
+    background-color: var(--color-secundario);
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #malla-curricular-container {
+        padding: 10px;
+    }
+
+    .semestre-columna {
+        flex: 0 0 150px;
+        min-width: 150px;
+        padding: 10px;
+    }
+    
+    .ramo {
+        font-size: 13px;
+    }
+}
